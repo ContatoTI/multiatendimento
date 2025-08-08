@@ -44,6 +44,29 @@ if (isLibraryMode) {
 
 export default defineConfig({
   plugins: plugins,
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://automaik-chatwoot.qaollz.easypanel.host',
+        changeOrigin: true,
+        secure: true,
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+      },
+      '/auth': {
+        target: 'https://automaik-chatwoot.qaollz.easypanel.host',
+        changeOrigin: true,
+        secure: true,
+      },
+      '/app': {
+        target: 'https://automaik-chatwoot.qaollz.easypanel.host',
+        changeOrigin: true,
+        secure: true,
+      },
+    },
+  },
   build: {
     rollupOptions: {
       output: {
